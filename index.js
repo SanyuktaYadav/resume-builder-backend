@@ -12,7 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/create-pdf", (req, res) => {
   pdf.create(pdfSample(req.body), {}).toFile("Resume.pdf", (err) => {
-    console.log("hello");
     if (err) {
       res.send(Promise.reject(err));
       console.log("err = ", err);
