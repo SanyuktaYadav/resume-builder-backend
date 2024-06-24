@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post("/create-pdf", (req, res) => {
+app.post("/api/create-pdf", (req, res) => {
   pdf.create(pdfSample(req.body), {}).toFile("./Resume.pdf", (err, _) => {
     if (err) {
       console.error("Error creating PDF:", err);
@@ -21,7 +21,7 @@ app.post("/create-pdf", (req, res) => {
   });
 });
 
-app.get("/fetch-pdf", (req, res) => {
+app.get("/api/fetch-pdf", (req, res) => {
   const filePath = "./Resume.pdf";
   res.sendFile(filePath, (err) => {
     if (err) {
