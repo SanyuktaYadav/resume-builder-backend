@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/create-pdf", (req, res) => {
-  pdf.create(pdfSample(req.body), {}).toFile("/tmp/Resume.pdf", (err, _) => {
+  pdf.create(pdfSample(req.body), {}).toFile("./Resume.pdf", (err, _) => {
     if (err) {
       console.error("Error creating PDF:", err);
       return res.status(500).json({ error: "Failed to create PDF" });
@@ -22,7 +22,7 @@ app.post("/create-pdf", (req, res) => {
 });
 
 app.get("/fetch-pdf", (req, res) => {
-  const filePath = "/tmp/Resume.pdf";
+  const filePath = "./Resume.pdf";
   res.sendFile(filePath, (err) => {
     if (err) {
       console.error("Error sending PDF file:", err);
